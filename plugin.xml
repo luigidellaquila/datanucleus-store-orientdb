@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--**********************************************************************
+Copyright (c) 2010 Luigi Dell'Aquila and others. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Contributors:
+    ...
+**********************************************************************-->
+<plugin id="org.datanucleus.store.orient" name="DataNucleus Orient" provider-name="DataNucleus">
+    <!-- STORE MANAGER -->
+    <extension point="org.datanucleus.store_manager">
+        <store-manager class-name="org.datanucleus.store.orient.OrientStoreManager" url-key="orient" key="orient"/>
+    </extension>
+
+    <!-- PERSISTENCE PROPERTIES -->
+    <extension point="org.datanucleus.persistence_properties">
+        <persistence-property name="datanucleus.orient.outputFile" datastore="true"
+            validator="org.datanucleus.store.orient.OrientPropertyValidator"/>
+        <persistence-property name="datanucleus.orient.flushFileBuffers" datastore="true" value="true"
+            validator="org.datanucleus.properties.BooleanPropertyValidator"/>
+        <persistence-property name="datanucleus.orient.generateUUIDs" datastore="true" value="false"
+            validator="org.datanucleus.properties.BooleanPropertyValidator"/>
+        <persistence-property name="datanucleus.orient.exceptionsOnNotStorable" datastore="true" value="false"
+            validator="org.datanucleus.properties.BooleanPropertyValidator"/>
+        <persistence-property name="datanucleus.orient.internStrings" datastore="true" value="false"
+            validator="org.datanucleus.properties.BooleanPropertyValidator"/>
+        <persistence-property name="datanucleus.orient.automaticShutdown" datastore="true" value="true"
+            validator="org.datanucleus.properties.BooleanPropertyValidator"/>
+        <persistence-property name="datanucleus.orient.lockDatabaseFile" datastore="true" value="true"
+            validator="org.datanucleus.properties.BooleanPropertyValidator"/>
+        <persistence-property name="datanucleus.orient.optimizeNativeQueries" datastore="true" value="true"
+            validator="org.datanucleus.properties.BooleanPropertyValidator"/>
+    </extension>
+
+    <!-- VALUE GENERATORS -->
+    <extension point="org.datanucleus.store_valuegenerator">
+        <valuegenerator name="increment" class-name="org.datanucleus.store.orient.valuegenerator.OrientIncrementGenerator"
+            datastore="orient"/>
+        <valuegenerator name="sequence" class-name="org.datanucleus.store.orient.valuegenerator.OrientIncrementGenerator"
+            datastore="orient"/>
+    </extension>
+	
+    <!-- QUERY LANGUAGES -->
+    <extension point="org.datanucleus.store_query_query">
+        <query name="JDOQL" class-name="org.datanucleus.store.orient.query.JDOQLQuery" datastore="orient"/>
+        <!--
+        <query name="JPQL" class-name="org.datanucleus.store.orient.query.JPQLQuery" datastore="orient"/>
+        -->
+        <query name="SQL" class-name="org.datanucleus.store.orient.query.SQLQuery" datastore="orient"/>
+        <query name="Native" class-name="org.datanucleus.store.orient.query.NativeQuery" datastore="orient"/>
+    </extension>
+
+    <!-- CONNECTION FACTORY -->
+    <extension point="org.datanucleus.store_connectionfactory">
+        <connectionfactory name="orient/tx" class-name="org.datanucleus.store.orient.ConnectionFactoryImpl" transactional="true"
+            datastore="orient"/>
+    </extension>
+</plugin>

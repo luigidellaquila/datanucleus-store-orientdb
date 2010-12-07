@@ -1,0 +1,16 @@
+=========================================================================
+==  NOTICE file corresponding to section 4(d) of the Apache License,   ==
+==  Version 2.0, in this case for the DataNucleus distribution.        ==
+=========================================================================
+
+===================================================================
+This product includes software developed by many individuals,
+including the following:
+===================================================================
+Luigi Dell'Aquila
+
+===================================================================
+This product has included contributions from some individuals,
+including the following:
+===================================================================
+
